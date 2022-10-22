@@ -5,6 +5,10 @@
 	box-sizing: border-box;
 	font-family: "Poppins";
 }
+a {
+	text-decoration: none;
+	color: inherit;
+}
 input {
 	border: none;
 	outline: none;
@@ -15,7 +19,7 @@ html {
 }
 body {
 	width: 100vw;
-	height: 100vh;
+	// height: 100vh;
 
 	background: rgb(174, 238, 222);
 	background: linear-gradient(
@@ -24,4 +28,22 @@ body {
 		rgba(227, 247, 241, 1) 0%,
 		rgba(246, 246, 195, 0.9304096638655462) 100%
 	);
+	scroll-behavior: smooth;
+}
+*::selection {
+	background-color: rgba(246, 246, 195, 0.9304096638655462);
+}
+body::-webkit-scrollbar {
+	width: 15px;
+	border-radius: 1ex;
+	background-color: #ffffc9f6;
+}
+body::-webkit-scrollbar-thumb {
+	background-color: #ed6ea1ae;
+	border-radius: 1ex;
+	transition: 0.2s;
+}
+body::-webkit-scrollbar-thumb:hover {
+	background-color: #ed6ea0;
+	transition: 0.2s;
 }

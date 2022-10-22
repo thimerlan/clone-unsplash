@@ -10,15 +10,19 @@ function App() {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [querX, setQuerx] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(null);
+
   useEffect(() => {
     async function FetchData() {
       try {
         const response = await axios.get(
-          `https://api.unsplash.com/search/photos?=per_page${3}=&query=${query}=&client_id=J39C7nLsgnQNka7pJDJRr4ZHKe-RuMpuFxcfpURHn18`
+          `https://api.unsplash.com/search/photos?page=${page}&query=${query}=&client_id=J39C7nLsgnQNka7pJDJRr4ZHKe-RuMpuFxcfpURHn18&per_page=9`
         );
         setData(response.data.results);
+        setTotalPages(response.data.total_pages);
       } catch (error) {
-        console.warn(Error(error));
+        console.error(Error(error));
       }
     }
     if (querX) {
@@ -31,9 +35,32 @@ function App() {
       setQuerx(false);
     }, 1000);
   };
-  console.log(data);
-  console.log(query);
-  console.log(querX);
+
+  function NextPage() {
+    setPage((prev) => prev + 1);
+    setQuerx(true);
+    setTimeout(() => {
+      setQuerx(false);
+    }, 100);
+    if (totalPages === page) {
+      setPage(totalPages);
+    } else {
+    }
+  }
+  function prevPage() {
+    setPage((prev) => prev - 1);
+    setQuerx(true);
+    setTimeout(() => {
+      setQuerx(false);
+    }, 100);
+    if (page <= 1) {
+      setPage(1);
+    } else {
+    }
+  }
+  //   console.log(data);
+  //   console.log(query);
+  //   console.log(querX);
   //   console.log(data);
 
   return (
@@ -41,7 +68,12 @@ function App() {
       <div className="content">
         <div className="container">
           <Search callQuery={callQuery} setQuery={setQuery} query={query} />
-          <User_img data={data} />
+          <User_img
+            page={page}
+            NextPage={NextPage}
+            prevPage={prevPage}
+            data={data}
+          />
         </div>
       </div>
     </div>

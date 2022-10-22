@@ -4,16 +4,26 @@ const Search = ({ targetQuery, query, setQuery, callQuery }) => {
   return (
     <header>
       <div className="search-bar">
-        <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="search-inp"
-          type="text"
-          placeholder="Search Anything"
-        />
+        <div className="in-inp">
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="search-inp"
+            type="text"
+            placeholder="Search Anything"
+          />
+          <span
+            onClick={() => {
+              setQuery("");
+            }}
+            className={query ? "" : "offTxt"}
+          >
+            &#10008;
+          </span>
+        </div>
 
-        <button onClick={callQuery} class="bn632-hover bn27">
-          Button
+        <button onClick={callQuery} className="bn632-hover bn27">
+          Go!
         </button>
       </div>
     </header>

@@ -1,42 +1,60 @@
 header {
 	width: 100%;
-
 	display: flex;
 	justify-content: center;
 	margin: 6rem 0rem;
 	.search-bar {
 		padding: 10px;
+		display: flex;
+		align-items: center;
+		.in-inp {
+			position: relative;
+		}
+		.in-inp span {
+			cursor: pointer;
+			transition: 0.4s all 0.1s;
+			opacity: 1;
+			padding: 5px;
+			position: absolute;
+			right: 0;
+			font-weight: 777;
+			color: rgba(236, 116, 148, 0.89);
+		}
+
 		.search-inp {
-			width: 250px;
-			padding: 8px 5px;
+			width: 270px;
+			padding: 8px 10px;
+			padding-right: 19px;
 			border-radius: 1ex;
 			border: none;
 			outline: none;
 			font-weight: 506;
 			letter-spacing: 0.1em;
 			transition: 0.4s all;
+
 			&::placeholder {
 				padding-left: 5px;
 				font-family: "Poppins";
 				font-weight: 666;
 			}
 			&:hover {
-				box-shadow: 0px 0px 4px 4px rgb(199, 226, 136);
+				box-shadow: 0px 0px 4px 4px rgba(216, 243, 106, 0.91);
 			}
 			&:focus {
-				box-shadow: 0px 0px 4px 5px rgb(235, 232, 182);
+				// box-shadow: 0px 0px 4px 4.2px rgb(235, 232, 182);
+				box-shadow: 0px 0px 4px 4.2px rgba(247, 140, 168, 0.819);
 			}
 		}
 	}
 }
 .bn632-hover {
-	width: 70px;
+	width: 60px;
 	font-size: 16px;
 	font-weight: 600;
 	color: #fff;
 	cursor: pointer;
 	margin: 20px;
-	height: 55px;
+	height: 50px;
 	text-align: center;
 	border: none;
 	background-size: 300% 100%;
@@ -62,4 +80,9 @@ header {
 .bn632-hover.bn27 {
 	background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a, #fbb03b);
 	box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+}
+.offTxt {
+	cursor: text !important;
+	transition: 0.4s all;
+	opacity: 0 !important;
 }
