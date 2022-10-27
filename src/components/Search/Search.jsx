@@ -22,7 +22,11 @@ const Search = ({ targetQuery, query, setQuery, callQuery }) => {
           </span>
         </div>
 
-        <button onClick={callQuery} className="bn632-hover bn27">
+        <button
+          disabled={query.length ? false : true}
+          onClick={callQuery}
+          className="bn632-hover bn27"
+        >
           Go!
         </button>
       </div>
