@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./UserImg.scss";
 import "./Buttons.scss";
+import song from "../../song.mp3";
 import { SyncLoader } from "react-spinners";
 
 const User_img = ({
@@ -16,6 +17,10 @@ const User_img = ({
   ortFilter,
   lazy,
 }) => {
+  const playSong = useRef(null);
+  const bahh = () => {
+    playSong.current.play();
+  };
   return (
     <>
       <div className="content-images">
@@ -51,9 +56,7 @@ const User_img = ({
         ) : (
           ""
         )}
-        {/* <div className="lazy">
-          <RotateLoader color="#fa719a" />
-        </div> */}
+
         <div className={data.length ? "us-images" : ""}>
           {data.length ? (
             <>
@@ -92,9 +95,13 @@ const User_img = ({
                     <br />
                     <div className="text dnt">DO NOT TOUCH</div>
                     <br />
-                    <div className="sheep">
+                    <div onClick={bahh} className="sheep">
                       <span className="top">
-                        <div className="body"></div>
+                        <div className="body">
+                          <audio ref={playSong}>
+                            <source src={song} type="audio/mp3" />
+                          </audio>
+                        </div>
                         <div className="head">
                           <div className="eye one"></div>
                           <div className="eye two"></div>

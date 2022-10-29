@@ -25,6 +25,7 @@ function App() {
         );
         setData(response.data.results);
         setTotalPages(response.data.total_pages);
+
         setTimeout(() => {
           setLazy(false);
         }, 2000);
@@ -93,14 +94,13 @@ function App() {
     setLazy(true);
     setTimeout(() => {
       setQuerx(false);
-      setLazy(false);
     }, 1000);
   }
   //   console.log(data);
   //   console.log(query);
   //   console.log(querX);
   //   console.log(data);
-  console.log(ort);
+  //   console.log(ort);
   return (
     <div className="unsplash">
       <div className="content">
