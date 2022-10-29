@@ -14,6 +14,7 @@ function App() {
   const [perPage, setPerPage] = useState(9);
   const [orderBy, setOrderBy] = useState(true);
   const [ort, setOrt] = useState("landscape");
+  const [lazy, setLazy] = useState(true);
   useEffect(() => {
     async function FetchData() {
       try {
@@ -24,6 +25,9 @@ function App() {
         );
         setData(response.data.results);
         setTotalPages(response.data.total_pages);
+        setTimeout(() => {
+          setLazy(false);
+        }, 2000);
       } catch (error) {
         console.error(Error(error));
       }
@@ -42,9 +46,10 @@ function App() {
   function NextPage() {
     setPage((prev) => prev + 1);
     setQuerx(true);
+    setLazy(true);
     setTimeout(() => {
       setQuerx(false);
-    }, 50);
+    }, 1000);
     if (totalPages === page) {
       setPage(totalPages);
     } else {
@@ -85,9 +90,11 @@ function App() {
   function ortFilter(e) {
     setOrt(e.target.value);
     setQuerx(true);
+    setLazy(true);
     setTimeout(() => {
       setQuerx(false);
-    }, 100);
+      setLazy(false);
+    }, 1000);
   }
   //   console.log(data);
   //   console.log(query);
@@ -111,6 +118,7 @@ function App() {
             orderBy={orderBy}
             ortFilter={ortFilter}
             orderByLatest={orderByLatest}
+            lazy={lazy}
           />
         </div>
       </div>

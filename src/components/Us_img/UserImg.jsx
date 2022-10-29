@@ -1,6 +1,8 @@
 import React from "react";
 import "./UserImg.scss";
 import "./Buttons.scss";
+import { SyncLoader } from "react-spinners";
+
 const User_img = ({
   data,
   NextPage,
@@ -12,6 +14,7 @@ const User_img = ({
   orderBy,
   orderByLatest,
   ortFilter,
+  lazy,
 }) => {
   return (
     <>
@@ -48,25 +51,37 @@ const User_img = ({
         ) : (
           ""
         )}
+        {/* <div className="lazy">
+          <RotateLoader color="#fa719a" />
+        </div> */}
         <div className={data.length ? "us-images" : ""}>
           {data.length ? (
             <>
-              {data.map((datas) => {
-                return (
-                  <div key={datas.id} className="us-img">
-                    <img src={datas.urls.regular} alt={datas.alt_description} />
-                    <button className="download-btn ">
-                      <a
-                        href={`${datas.links.download}&force=true`}
-                        class="wave-btn"
-                      >
-                        <span class="wave-btn__text">Download</span>
-                        <span class="wave-btn__waves"></span>
-                      </a>
-                    </button>
-                  </div>
-                );
-              })}
+              {lazy ? (
+                <div className="lazy">
+                  <SyncLoader color="#ebff00" />
+                </div>
+              ) : (
+                data.map((datas) => {
+                  return (
+                    <div key={datas.id} className="us-img">
+                      <img
+                        src={datas.urls.regular}
+                        alt={datas.alt_description}
+                      />
+                      <button className="download-btn ">
+                        <a
+                          href={`${datas.links.download}&force=true`}
+                          class="wave-btn"
+                        >
+                          <span class="wave-btn__text">Download</span>
+                          <span class="wave-btn__waves"></span>
+                        </a>
+                      </button>
+                    </div>
+                  );
+                })
+              )}
             </>
           ) : (
             <div className="emptyData">
@@ -103,14 +118,18 @@ const User_img = ({
               )}
             </div>
           )}
-          <div className="paginate">
-            <button onClick={() => prevPage()} className="bn-32 bn32">
-              Prev
-            </button>
-            <button onClick={() => NextPage()} className="bn-32 bn32">
-              Next
-            </button>
-          </div>
+          {lazy ? (
+            "..."
+          ) : (
+            <div className="paginate">
+              <button onClick={() => prevPage()} className="bn-32 bn32">
+                Prev
+              </button>
+              <button onClick={() => NextPage()} className="bn-32 bn32">
+                Next
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>
