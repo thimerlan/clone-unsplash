@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./App.scss";
 import axios from "axios";
 import Search from "./components/Search/Search";
-import User_img from "./components/Us_img/UserImg";
+import UserImg from "./components/Us_img/UserImg";
 
 function App() {
   const [data, setData] = useState([]);
@@ -28,12 +28,13 @@ function App() {
 
         setTimeout(() => {
           setLazy(false);
-        }, 2000);
+        }, 500);
       } catch (error) {
         console.error(Error(error));
       }
     }
     if (querX) {
+      setLazy(true);
       FetchData();
     }
   }, [querX]);
@@ -41,31 +42,26 @@ function App() {
     setQuerx(true);
     setTimeout(() => {
       setQuerx(false);
-    }, 1000);
+    }, 100);
   };
 
   function NextPage() {
     setPage((prev) => prev + 1);
     setQuerx(true);
-    setLazy(true);
     setTimeout(() => {
       setQuerx(false);
-    }, 1000);
+    }, 100);
     if (totalPages === page) {
       setPage(totalPages);
     } else {
     }
   }
   function prevPage() {
-    setPage((prev) => prev - 1);
-    setQuerx(true);
+    page !== 1 && setPage((prev) => prev - 1);
+    page !== 1 && setQuerx(true);
     setTimeout(() => {
       setQuerx(false);
     }, 100);
-    if (page <= 1) {
-      setPage(1);
-    } else {
-    }
   }
   function PerPage() {
     setPerPage((prev) => prev + 3);
@@ -91,22 +87,17 @@ function App() {
   function ortFilter(e) {
     setOrt(e.target.value);
     setQuerx(true);
-    setLazy(true);
     setTimeout(() => {
       setQuerx(false);
-    }, 1000);
+    }, 100);
   }
-  //   console.log(data);
-  //   console.log(query);
-  //   console.log(querX);
-  //   console.log(data);
-  //   console.log(ort);
+
   return (
     <div className="unsplash">
       <div className="content">
         <div className="container">
           <Search callQuery={callQuery} setQuery={setQuery} query={query} />
-          <User_img
+          <UserImg
             page={page}
             NextPage={NextPage}
             prevPage={prevPage}

@@ -37,12 +37,12 @@ const User_img = ({
               >
                 Less
               </button>
-              <button onClick={orderByLatest} class="bn632-hover bn20">
+              <button onClick={orderByLatest} className="bn632-hover bn20">
                 {orderBy ? "Relevant" : "Latest"}
               </button>
             </div>
             <div className="right-btns">
-              <div class="select">
+              <div className="select">
                 <select onChange={(e) => ortFilter(e)}>
                   <option selected value="landscape">
                     Landscape
@@ -75,10 +75,10 @@ const User_img = ({
                       <button className="download-btn ">
                         <a
                           href={`${datas.links.download}&force=true`}
-                          class="wave-btn"
+                          className="wave-btn"
                         >
-                          <span class="wave-btn__text">Download</span>
-                          <span class="wave-btn__waves"></span>
+                          <span className="wave-btn__text">Download</span>
+                          <span className="wave-btn__waves"></span>
                         </a>
                       </button>
                     </div>
@@ -125,19 +125,19 @@ const User_img = ({
               )}
             </div>
           )}
-          {lazy ? (
-            "..."
-          ) : (
-            <div className="paginate">
-              <button onClick={() => prevPage()} className="bn-32 bn32">
-                Prev
-              </button>
-              <button onClick={() => NextPage()} className="bn-32 bn32">
-                Next
-              </button>
-            </div>
-          )}
         </div>
+        {data.length && !lazy ? (
+          <div className="paginate">
+            <button onClick={prevPage} className="bn-32 bn32">
+              Prev
+            </button>
+            <button onClick={NextPage} className="bn-32 bn32">
+              Next
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );
